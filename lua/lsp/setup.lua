@@ -1,19 +1,19 @@
-local lsp_installer = require("nvim-lsp-installer")
+local lsp_installer = require('nvim-lsp-installer')
 require('lsp.config.ccls')
-require("lsp.config.rust_analyzer")
 
 local servers = {
-  sumneko_lua = require("lsp.config.lua"), -- lua/lsp/config/lua.lua
-  pyright=require('lsp.config.pyright')
+    sumneko_lua = require('lsp.config.lua'), -- lua/lsp/config/lua.lua
+    pyright = require('lsp.config.pyright'),
+    rust_analyzer = require('lsp.config.rust'),
 }
 -- for name, _ in pairs(servers) do
-  -- local server_is_found, server = lsp_installer.get_server(name)
-  -- if server_is_found then
-    -- if not server:is_installed() then
-      -- print("Installing " .. name)
-      -- server:install()
-    -- end
-  -- end
+-- local server_is_found, server = lsp_installer.get_server(name)
+-- if server_is_found then
+-- if not server:is_installed() then
+-- print("Installing " .. name)
+-- server:install()
+-- end
+-- end
 -- end
 
 lsp_installer.on_server_ready(function(server)

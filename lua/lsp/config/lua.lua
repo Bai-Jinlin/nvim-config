@@ -18,7 +18,6 @@ local opts = {
             workspace = {
                 -- Make the server aware of Neovim runtime files
                 library = vim.api.nvim_get_runtime_file('', true),
-                checkThirdParty = false,
             },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {
@@ -30,9 +29,9 @@ local opts = {
         debounce_text_changes = 150,
     },
     on_attach = function(client, bufnr)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
-
+        -- vim.notify(vim.inspect(client.server_capabilities))
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
         local function buf_set_keymap(...)
             vim.api.nvim_buf_set_keymap(bufnr, ...)
         end
@@ -48,4 +47,3 @@ return {
         server:setup(opts)
     end,
 }
-
